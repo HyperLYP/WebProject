@@ -1,0 +1,12 @@
+.container_main {
+    width: 960px;
+    background-color: #f7f8fa;
+    /*置于顶层*/
+    z-index: 10;
+    /*居中*/
+    left: 50%;
+    margin-left: -480px;
+    position: absolute;
+    /*设置透明度*/
+    opacity: 80%;
+}
