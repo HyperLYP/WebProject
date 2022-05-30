@@ -1,0 +1,21 @@
+nav {
+    margin: 3px;
+    opacity: 80%;
+    border: 2px solid hotpink;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+nav ul li a {
+    font-size: 20px;
+}
+
+nav ul li a:hover {
+    color: #00d2ff;
+    font-weight: bold;
+}
