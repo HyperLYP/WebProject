@@ -1,0 +1,29 @@
+header {
+    height: 80px;
+    background-color: hotpink;
+    position: relative;
+}
+
+header img {
+    width: 90px;
+    height: 70px;
+    margin: 5px 20px;
+}
+
+header span {
+    color: white;
+}
+
+.s_info {
+    font-size: 30px;
+    position: absolute;
+    left: 30%;
+    top: 25%;
+}
+
+.s_phone {
+    font-size: 20px;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+}
