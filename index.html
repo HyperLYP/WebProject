@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/nav.css">
     <link rel="stylesheet" href="./css/index_newsBlock.css">
+    <link rel="stylesheet" href="./css/video_clip.css">
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="./js/unslider.min.js"></script>
 </head>
@@ -57,6 +58,14 @@
             </ul>
         </div>
     </div>
+    <div class="video_clip">
+            <div class="video_area">
+                <img class="video_background" src="img/traveler.jpg" alt="">
+                <div class="video_button_bg"></div>
+                <img class="video_button" src="img/button.png" alt="">
+            </div>
+        <div class="videos"></div>
+    </div>
 </div>
 <section>
     <div class="color"></div>
@@ -71,8 +80,31 @@
     </div>
 </section>
 <script>
+    $('.video_area').each(function () {
+        $(this).click(function () {
+            var img = "img/traveler.jpg";
+            var video = "img/genshin_impact.mp4";
+            $('.videos').html("<video id=\"video\" poster='" + img + "' style='width: 100%;' src='" + video + "' preload=\"auto\" controls=\"controls\" autoplay=\"autoplay\"></video><img onclick=\"closeVideo()\" class=\"vclose\" src=\"img/close.png\" alt=\"\"/>");
+            $('.videos').show();
+        });
+    });
+    function closeVideo() {
+        var v = document.getElementById('video');
+        $('.videos').hide();
+        v.pause();
+        $('.videos').html();
+    }
+
     $(document).ready(function(e) {
         $('.newsBlock_img').unslider();
+        $('.video_button').hover(
+            function() {
+                $('.video_button_bg').css("background-color","white");
+            },
+            function() {
+                $('.video_button_bg').css("background-color","transparent");
+            }
+        );
     })
 </script>
 </body>
