@@ -171,7 +171,6 @@ a:active {
 
 img {
 	width: 100%;
-	pointer-events: none;
 	vertical-align: middle;
 }
 
