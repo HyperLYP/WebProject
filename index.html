@@ -89,7 +89,7 @@
 </section>
 <script>
     $('.video_area').each(function () {
-        $(this).click(function () {
+        $('.video_button').click(function () {
             var img = "img/traveler.jpg";
             var video = "img/genshin_impact.mp4";
             $('.videos').html("<video id=\"video\" poster='" + img + "' style='width: 100%;' src='" + video + "' preload=\"auto\" controls=\"controls\" autoplay=\"autoplay\"></video><img onclick=\"closeVideo()\" class=\"vclose\" src=\"img/close.png\" alt=\"\"/>");
