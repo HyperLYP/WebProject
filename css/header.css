@@ -29,6 +29,10 @@ header span {
     margin-right: 40px;
 }
 
+.s_login a:visited {
+    color: #333;
+}
+
 .s_login a:hover {
     color: #00d2ff;
     font-weight: bold;
