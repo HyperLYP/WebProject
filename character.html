@@ -72,7 +72,6 @@
     console.log(distance);
     var num = 0;
 
-    //decrypt
     function uncompile(code)
     {
         code=unescape(code);
@@ -116,17 +115,6 @@
             }
         );
     });
-
-    //encrypt
-    function compile(code)
-    {
-        var c=String.fromCharCode(code.charCodeAt(0)+code.length);
-        for(var i=1;i<code.length;i++){
-            c+=String.fromCharCode(code.charCodeAt(i)+code.charCodeAt(i-1));
-        }
-        console.log(escape(c));
-    }
-    compile('$(\'#footer\').html("<div><p>Copyright © 2022-2022 <a class=\\\"sig\\\" href=\\\"https://github.com/HyperLYP\\\" target=\\\"_blank\\\">HyperLYP@github.com</a> All Rights Reserved.</p></div>");box_ul.innerHTML += box_ul.innerHTML;');
 </script>
 </body>
 </html>
