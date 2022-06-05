@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/nav.css">
     <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/character.css">
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="./js/unslider.min.js"></script>
 </head>
@@ -34,6 +35,19 @@
             <li><a href="https://bbs.mihoyo.com/ys/" target="_blank">社区</a></li>
         </ul>
     </nav>
+    <div class="stage"></div>
+    <div class="roll">
+        <ul id="box_ul">
+            <li><img id="keli" src="img/character/keli.png" alt=""></li>
+            <li><img id="dadaliya" src="img/character/dadaliya.png" alt=""></li>
+            <li><img id="ayaka" src="img/character/ayaka.png" alt=""></li>
+            <li><img id="keqing" src="img/character/keqing.png" alt=""></li>
+            <li><img id="wanye" src="img/character/wanye.png" alt=""></li>
+            <li><img id="xiao" src="img/character/xiao.png" alt=""></li>
+            <li><img id="xiaogong" src="img/character/xiaogong.png" alt=""></li>
+            <li><img id="xinhai" src="img/character/xinhai.png" alt=""></li>
+        </ul>
+    </div>
     <footer>
         <div>
             <p>
@@ -55,7 +69,46 @@
     </div>
 </section>
 <script>
+    var box_ul = document.getElementById("box_ul");
+    var item_width = box_ul.children[0].offsetWidth;
+    var count = box_ul.children.length;
+    var distance = item_width * count;
+    console.log(distance);
+    var num = 0;
+    //让ul加倍
+    box_ul.innerHTML += box_ul.innerHTML;
+    function roll(e) {
+        num -= 1;
+        if (num <= -distance) num = 0;
+        box_ul.style.left = num + "px";
+    }
+    var rollID = setInterval(roll,10);
+    box_ul.onmouseenter = function () {
+        //取消定时器
+        window.clearInterval(rollID);
+    }
+    box_ul.onmouseleave = function () {
+        rollID = setInterval(roll,10);
+    }
 
+    $("img").each(function () {
+        $(this).hover(
+            function() {
+                $(this).css("background-color","white");
+                if (this.id === "keli") $('.stage').html("<img class=\"stage_onshow\" src=\"img/character/onshow/keli.png\" alt=\"\"/>");
+                else if (this.id === "dadaliya") $('.stage').html("<img class=\"stage_onshow\" src=\"img/character/onshow/dadaliya.png\" alt=\"\"/>");
+                else if (this.id === "ayaka") $('.stage').html("<img class=\"stage_onshow\" src=\"img/character/onshow/ayaka.png\" alt=\"\"/>");
+                else if (this.id === "keqing") $('.stage').html("<img class=\"stage_onshow\" src=\"img/character/onshow/keqing.png\" alt=\"\"/>");
+                else if (this.id === "wanye") $('.stage').html("<img class=\"stage_onshow\" src=\"img/character/onshow/wanye.png\" alt=\"\"/>");
+                else if (this.id === "xiao") $('.stage').html("<img class=\"stage_onshow\" src=\"img/character/onshow/xiao.png\" alt=\"\"/>");
+                else if (this.id === "xiaogong") $('.stage').html("<img class=\"stage_onshow\" src=\"img/character/onshow/xiaogong.png\" alt=\"\"/>");
+                else if (this.id === "xinhai") $('.stage').html("<img class=\"stage_onshow\" src=\"img/character/onshow/xinhai.png\" alt=\"\"/>");
+            },
+            function() {
+                $(this).css("background-color","transparent");
+            }
+        );
+    });
 </script>
 </body>
 </html>

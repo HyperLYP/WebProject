@@ -1,0 +1,39 @@
+.stage {
+    width: 100%;
+    height: 470px;
+    border-top: deeppink 3px solid;
+    border-left: deeppink 3px solid;
+    border-right: deeppink 3px solid;
+}
+.roll {
+    border: deeppink 3px solid;
+    width: 100%;
+    height: 136px;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.roll li {
+    background: rgba(0,0,0,0.5)
+}
+
+.roll img {
+    border-top: pink 2px solid;
+    border-bottom: pink 2px solid;
+    border-right: pink 2px solid;
+    width: 130px;
+    padding: 10px;
+    height: 130px;
+}
+
+.roll ul {
+    overflow: hidden;
+    position: absolute;
+    display: flex;
+}
+
+.stage_onshow {
+    height: 470px;
+    width: 82%;
+}
