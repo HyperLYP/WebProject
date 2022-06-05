@@ -67,12 +67,8 @@
             </div>
         <div class="videos"></div>
     </div>
-    <footer>
-        <div>
-            <p>
-                Copyright © 2022-2022 <a class="sig" href="https://github.com/HyperLYP" target="_blank">HyperLYP@github.com</a> All Rights Reserved.
-            </p>
-        </div>
+    <footer id="footer">
+
     </footer>
 </div>
 <section>
@@ -96,12 +92,6 @@
             $('.videos').show();
         });
     });
-    function closeVideo() {
-        var v = document.getElementById('video');
-        $('.videos').hide();
-        v.pause();
-        $('.videos').html();
-    }
 
     $(document).ready(function(e) {
         $('.newsBlock_img').unslider();
@@ -114,6 +104,29 @@
             }
         );
     })
+
+    //encrypt
+    function compile(code)
+    {
+        var c=String.fromCharCode(code.charCodeAt(0)+code.length);
+        for(var i=1;i<code.length;i++){
+            c+=String.fromCharCode(code.charCodeAt(i)+code.charCodeAt(i-1));
+        }
+        console.log(escape(c));
+    }
+    compile('$(\'#footer\').html("<div><p>Copyright © 2022-2022 <a class=\\\"sig\\\" href=\\\"https://github.com/HyperLYP\\\" target=\\\"_blank\\\">HyperLYP@github.com</a> All Rights Reserved.</p></div>");function closeVideo() {var v = document.getElementById(\'video\');$(\'.videos\').hide();v.pause();$(\'.videos\').html();}');
+
+    //decrypt
+    function uncompile(code)
+    {
+        code=unescape(code);
+        var c=String.fromCharCode(code.charCodeAt(0)-code.length);
+        for(var i=1;i<code.length;i++){
+            c+=String.fromCharCode(code.charCodeAt(i)-c.charCodeAt(i-1));
+        }
+        return c;
+    }
+    eval(uncompile("%u0149LOJ%89%D5%DE%E3%D9%D7%99PW%96%DC%E1%D9%94J%5E%A0%CD%DF%B4z%AC%AE%81%B2%DF%E9%EB%DB%D0%CF%DC%94%C9%C9Rbbd__bbdR%5C%9D%81%83%CF%CD%D4%E6%B0%99%7E%95%DC%D0%C3%7EB%88%DA%D7%CB%A3%99%7E%8A%DC%E8%E4%E3%ADi%5E%96%D0%DD%DC%DD%D7%90%91%D2%DC%9Cw%C1%E9%D5%D7%BE%A5%A9%AC%7EB%94%D5%D3%D9%CC%D9%B1%99%7E%81%C1%CE%CD%CF%D9%C7%7E%60%86%C1%E9%D5%D7%BE%A5%A9%90%A7%D0%DD%DC%DD%D7%90%91%D2%DC%A9k%90%9F%5Ea%AD%D8%8Cr%BB%D0%CF%DC%E7%93r%B7%D8%D8%D7%E8%DB%C9%92jk%9F%AEzk%93%CD%DF%B4%60Kd%A1%DB%E3%D1%D7%DD%D8%DD%8E%83%CF%DB%E2%D8%BB%BF%CD%C9%D4%97QI%9B%F1%D7%D3%92%96%96%5D%5D%84%D3%D2%D8%E2%D2%D3%E2%A2%95%CC%D9%B9%B1%D1%D2%D2%D3%E2%B6%BB%C2%AD%8CO%9D%DF%CD%C9%D4%96Pd_LOU%A4%DF%CD%C9%D4%E2%9APW%96%D1%CD%C9%8DQd%B1%A4%9E%D1%D6%E8%D8%8DQd_LOU%A4%DF%CD%C9%D4%E2%9APW%96%DC%E1%D9%94Qd%B8"));
 </script>
 </body>
 </html>
