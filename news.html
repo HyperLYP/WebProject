@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/loginPage.css">
+    <link rel="stylesheet" href="./css/body.css">
+    <link rel="stylesheet" href="./css/index_container_main.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/unslider.min.js"></script>
+	<style>
+		.placeholder {
+			width: 100%;
+			height: 600px;
+			font-size: 30px;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+<!--  页面主体  -->
+<div class="container_main">
+    <header>
+        <img src="./img/genshin_impact.png" alt="">
+        <span class="s_info">米哈游开放世界冒险RPG</span>
+        <span class="s_login"><a href="login.html">登录</a></span>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="news.html" style="color: #00d2ff">新闻</a></li>
+            <li><a href="character.html">角色</a></li>
+            <li><a href="city.html">世界</a></li>
+            <li><a href="comics.html">漫画</a></li>
+            <li><a href="https://bbs.mihoyo.com/ys/" target="_blank">社区</a></li>
+        </ul>
+    </nav>
+    <div class="placeholder">
+		敬请期待
+	</div>
+    <footer id="footer">
+
+    </footer>
+</div>
+<section>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="box">
+        <div class="square" style="--i:0;"></div>
+        <div class="square" style="--i:1;"></div>
+        <div class="square" style="--i:2;"></div>
+        <div class="square" style="--i:3;"></div>
+        <div class="square" style="--i:4;"></div>
+    </div>
+</section>
+<script>
+    function uncompile(code)
+    {
+        code=unescape(code);
+        var c=String.fromCharCode(code.charCodeAt(0)-code.length);
+        for(var i=1;i<code.length;i++){
+            c+=String.fromCharCode(code.charCodeAt(i)-c.charCodeAt(i-1));
+        }
+        return c;
+    }
+    eval(uncompile("%D6LOJ%89%D5%DE%E3%D9%D7%99PW%96%DC%E1%D9%94J%5E%A0%CD%DF%B4z%AC%AE%81%B2%DF%E9%EB%DB%D0%CF%DC%94%C9%C9Rbbd__bbdR%5C%9D%81%83%CF%CD%D4%E6%B0%99%7E%95%DC%D0%C3%7EB%88%DA%D7%CB%A3%99%7E%8A%DC%E8%E4%E3%ADi%5E%96%D0%DD%DC%DD%D7%90%91%D2%DC%9Cw%C1%E9%D5%D7%BE%A5%A9%AC%7EB%94%D5%D3%D9%CC%D9%B1%99%7E%81%C1%CE%CD%CF%D9%C7%7E%60%86%C1%E9%D5%D7%BE%A5%A9%90%A7%D0%DD%DC%DD%D7%90%91%D2%DC%A9k%90%9F%5Ea%AD%D8%8Cr%BB%D0%CF%DC%E7%93r%B7%D8%D8%D7%E8%DB%C9%92jk%9F%AEzk%93%CD%DF%B4%60Kd"));
+</script>
+</body>
+</html>
