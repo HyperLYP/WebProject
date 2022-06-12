@@ -38,14 +38,14 @@
     <div class="stage"></div>
     <div class="roll">
         <ul id="box_ul">
-            <li><img id="keli" src="img/character/keli.png" alt=""></li>
-            <li><img id="dadaliya" src="img/character/dadaliya.png" alt=""></li>
-            <li><img id="ayaka" src="img/character/ayaka.png" alt=""></li>
-            <li><img id="keqing" src="img/character/keqing.png" alt=""></li>
-            <li><img id="wanye" src="img/character/wanye.png" alt=""></li>
-            <li><img id="xiao" src="img/character/xiao.png" alt=""></li>
-            <li><img id="xiaogong" src="img/character/xiaogong.png" alt=""></li>
-            <li><img id="xinhai" src="img/character/xinhai.png" alt=""></li>
+            <li><img class="roll_img" id="keli" src="img/character/keli.png" alt=""></li>
+            <li><img class="roll_img" id="dadaliya" src="img/character/dadaliya.png" alt=""></li>
+            <li><img class="roll_img" id="ayaka" src="img/character/ayaka.png" alt=""></li>
+            <li><img class="roll_img" id="keqing" src="img/character/keqing.png" alt=""></li>
+            <li><img class="roll_img" id="wanye" src="img/character/wanye.png" alt=""></li>
+            <li><img class="roll_img" id="xiao" src="img/character/xiao.png" alt=""></li>
+            <li><img class="roll_img" id="xiaogong" src="img/character/xiaogong.png" alt=""></li>
+            <li><img class="roll_img" id="xinhai" src="img/character/xinhai.png" alt=""></li>
         </ul>
     </div>
     <footer id="footer">
@@ -97,7 +97,7 @@
         rollID = setInterval(roll,10);
     }
 
-    $("img").each(function () {
+    $(".roll_img").each(function () {
         $(this).hover(
             function() {
                 $(this).css("background-color","white");
