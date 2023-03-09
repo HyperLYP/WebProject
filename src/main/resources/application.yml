@@ -1,0 +1,12 @@
+
+server:
+  port: 2333
+  servlet:
+    context-path: "/ms01"
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/compass?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
