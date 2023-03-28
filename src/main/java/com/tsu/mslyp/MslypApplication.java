@@ -1,6 +1,7 @@
 package com.tsu.mslyp;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,6 +13,7 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @Slf4j
+@MapperScan("com.tsu.mslyp.sys.mapper")
 public class MslypApplication {
 
     public static void main(String[] args) throws UnknownHostException {
@@ -20,7 +22,7 @@ public class MslypApplication {
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = env.getProperty("server.port");
         String path = env.getProperty("server.servlet.context-path");
-        if (StringUtils.isEmpty(path)) {
+        if (StringUtils.hasText(path)) {
             path = "";
         }
         log.info("\n----------------------------------------------------------\n\t" +
