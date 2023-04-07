@@ -12,6 +12,13 @@ module.exports = defineConfig({
           '^/api01': '',//路径重写，也就是说会修改最终请求的API路径:api只是去代替整体路径
         },
       },
+      '/api02': {
+        target: 'https://api.uixsj.cn/hitokoto/get', //API服务器的地址
+        changeOrigin: true,//是否跨域
+        pathRewrite: {
+          '^/api02': '',//路径重写，也就是说会修改最终请求的API路径:api只是去代替整体路径
+        },
+      },
     },
   },
 });	

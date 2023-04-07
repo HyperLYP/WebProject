@@ -10,7 +10,7 @@ const request = axios.create({
     timeout: 10000,
     withCredentials: true,
     //baseURL: 'https://apis.tianapi.com',
-    baseURL: '/api01',//为处理跨域修改！
+    //baseURL: '/api01',//为处理跨域修改！
     params: {
         key: '3aff15cc32cc9f759fe8221c9045539b',
     },

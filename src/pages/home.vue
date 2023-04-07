@@ -1,8 +1,8 @@
 <!--  -->
 <template>
     <div class='home'>
-        <h2>HOME组件</h2>
-        敬请期待
+        <van-nav-bar class="nav-bar" title="主页" />
+        <van-notice-bar left-icon="volume-o" :text="notice" />
     </div>
 </template>
 
@@ -13,14 +13,23 @@ export default {
     data() {
         //这里存放数据
         return {
-
+            notice: "",
         };
     },
+    mounted() {
+        this.$api.api_home.getNotice().then((resp) => {
+            this.notice = resp;
+        })
+    }
 }
 </script>
 <style scoped>
 .home {
     min-height: 100vh;
     background-color: aqua;
+}
+
+.nav-bar {
+    background-color: pink;
 }
 </style>
