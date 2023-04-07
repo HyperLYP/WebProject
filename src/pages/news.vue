@@ -34,6 +34,9 @@ export default {
     align-items: center; */
     flex-flow: column nowrap;
 }
+.news /deep/ .van-nav-bar__title {
+    color: white;
+}
 .nav-bar {
     background-color: pink;
 }
