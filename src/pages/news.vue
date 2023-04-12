@@ -2,9 +2,20 @@
 <template>
     <div class='news'>
         <van-nav-bar class="nav-bar" title="新闻" />
-        <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-            <van-cell v-for="item in list" :key="item.id" :title="item.title" />
-        </van-list>
+        <div class="content">
+            <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+                <van-cell v-for="item in list" :key="item.id">
+                    <!-- 条目新闻布局 -->
+                    <div class="itemContainer">
+                        <div class="item_left">
+                            <a :href="item.url" class="ellipsis1">{{ item.title }}</a>
+                            <div><span>{{ item.source }}</span></div>
+                        </div>
+                        <div><img :src="item.picUrl"></div>
+                    </div>
+                </van-cell>
+            </van-list>
+        </div>
     </div>
 </template>
 
@@ -20,44 +31,33 @@ export default {
             list: [],
             loading: false,
             finished: false,
+            page: 0,
         };
-    },
-    mounted() {
-
     },
     methods: {
         onLoad() {
+            this.page += 1;
             // 联网请求
-            this.$api.api_news.getNews().then(resp => {
+            this.$api.api_news.getNews(this.page).then(resp => {
+                console.log("请求的页码是：" + this.page);
                 console.log(resp);
-                this.list = resp.result.newslist;
-                this.list.push(resp.result.newslist.length);
+                // 解构赋值
+                this.list.push(...resp.result.newslist);
                 // 加载状态结束
                 this.loading = false;
-                this.finished = true;
+                // this.finished = true;
+                // 模拟没有数据了，就手动结束请求加载
+                if (this.page == 5) {
+                    this.finished = true;
+                }
             })
-            // 异步更新数据
-            // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-            // setTimeout(() => {
-            //     for (let i = 0; i < 10; i++) {
-            //         this.list.push(this.list.length + 1);
-            //     }
-
-            //     // 加载状态结束
-            //     this.loading = false;
-
-            //     // 数据全部加载完成
-            //     if (this.list.length >= 40) {
-            //         this.finished = true;
-            //     }
-            // }, 1000);
         },
     }
 }
 </script>
 <style scoped>
 .news {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     /* background-color: pink; */
     display: flex;
     /* justify-content: center;
@@ -71,5 +71,38 @@ export default {
 
 .nav-bar {
     background-color: pink;
+}
+
+.itemContainer {
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: space-between;
+}
+
+.itemContainer img {
+    width: 160px;
+    height: 130px;
+    background-image: url('@/assets/logo.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.item_left {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+van-list {
+    height: 20px;
+}
+
+.content {
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    top: 46px;
+    right: 0;
+    overflow-y: auto;
 }
 </style>
