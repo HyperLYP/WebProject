@@ -3,18 +3,20 @@
     <div class='news'>
         <van-nav-bar class="nav-bar" title="新闻" />
         <div class="content">
-            <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-                <van-cell v-for="item in list" :key="item.id">
-                    <!-- 条目新闻布局 -->
-                    <div class="itemContainer">
-                        <div class="item_left">
-                            <a :href="item.url" class="ellipsis1">{{ item.title }}</a>
-                            <div><span>{{ item.source }}</span></div>
+            <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+                    <van-cell v-for="item in list" :key="item.id">
+                        <!-- 条目新闻布局 -->
+                        <div class="itemContainer">
+                            <div class="item_left">
+                                <a :href="item.url" class="ellipsis1">{{ item.title }}</a>
+                                <div><span>{{ item.source }}</span></div>
+                            </div>
+                            <div><img :src="item.picUrl"></div>
                         </div>
-                        <div><img :src="item.picUrl"></div>
-                    </div>
-                </van-cell>
-            </van-list>
+                    </van-cell>
+                </van-list>
+            </van-pull-refresh>
         </div>
     </div>
 </template>
@@ -24,6 +26,7 @@
 
 
 export default {
+    name: "news",
     components: {},
     data() {
         //这里存放数据
@@ -31,12 +34,30 @@ export default {
             list: [],
             loading: false,
             finished: false,
+            refreshing: false,
             page: 0,
         };
     },
+    beforeDestroy() {
+        console.log("销毁前执行--news组件")
+    },
     methods: {
+        onRefresh() {
+            // 清空列表数据
+            this.list=[];
+            this.finished = false;
+
+            // 重新加载数据
+            // 将 loading 设置为 true，表示处于加载状态
+            this.loading = true;
+            this.page = 0;
+            this.onLoad();
+        },
         onLoad() {
             this.page += 1;
+            this.callNet();
+        },
+        callNet() {
             // 联网请求
             this.$api.api_news.getNews(this.page).then(resp => {
                 console.log("请求的页码是：" + this.page);
@@ -51,7 +72,7 @@ export default {
                     this.finished = true;
                 }
             })
-        },
+        }
     }
 }
 </script>

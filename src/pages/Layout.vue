@@ -1,7 +1,9 @@
 <!-- 布局页面 -->
 <template>
     <div class='container'>
-        <router-view></router-view>
+        <keep-alive include="home,news">
+            <router-view></router-view>
+        </keep-alive>
         <!-- 底部导航栏 -->
         <van-tabbar v-model="active" route>
             <van-tabbar-item icon="wap-home-o" to="/home">主页</van-tabbar-item>
