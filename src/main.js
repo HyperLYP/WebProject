@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/router'
 import '@/assets/reset.css'
 import '@/plugins/vant'
+import '@/plugins/baidumap'
 // 引入接口统一入口文件，类似App.vue统一管理组件
 import api from '@/api/api'
 import 'amfe-flexible'
