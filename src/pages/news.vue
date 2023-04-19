@@ -78,11 +78,7 @@ export default {
 </script>
 <style scoped>
 .news {
-    /* min-height: 100vh; */
-    /* background-color: pink; */
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
     flex-flow: column nowrap;
 }
 

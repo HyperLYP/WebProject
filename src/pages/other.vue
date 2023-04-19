@@ -111,7 +111,8 @@ export default {
 </script>
 <style scoped>
 .other {
-    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .nav-bar {
