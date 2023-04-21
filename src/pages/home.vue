@@ -53,6 +53,10 @@ export default {
     background-color: aqua;
 }
 
+.home /deep/ .van-nav-bar__title {
+    color: white;
+}
+
 .nav-bar {
     background-color: pink;
 }

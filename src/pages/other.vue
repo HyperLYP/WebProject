@@ -115,6 +115,10 @@ export default {
     flex-flow: column nowrap;
 }
 
+.other /deep/ .van-nav-bar__title {
+    color: white;
+}
+
 .nav-bar {
     background-color: pink;
 }
