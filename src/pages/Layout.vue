@@ -1,7 +1,7 @@
 <!-- 布局页面 -->
 <template>
     <div class='container'>
-        <keep-alive include="home,news">
+        <keep-alive include="home,news,others,me">
             <router-view></router-view>
         </keep-alive>
         <!-- 底部导航栏 -->

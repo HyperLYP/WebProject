@@ -13,6 +13,7 @@
 <script>
 
 export default {
+    name: "others",
     components: {},
     data() {
         //这里存放数据
@@ -32,6 +33,9 @@ export default {
             //地图对象
             map: null
         };
+    },
+    beforeDestroy() {
+        console.log("销毁前执行--others组件")
     },
     methods: {
         //地图预处理
