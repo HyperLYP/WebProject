@@ -66,6 +66,7 @@ export default {
                 this.list.push(...resp.result.newslist);
                 // 加载状态结束
                 this.loading = false;
+                this.refreshing = false;
                 // this.finished = true;
                 // 模拟没有数据了，就手动结束请求加载
                 if (this.page == 5) {
