@@ -7,6 +7,8 @@ import '@/assets/reset.css';
 import 'element-ui/lib/theme-chalk/index.css';
 // 引入初始化样式：
 import 'normalize.css';
+import axios from 'axios';
+Vue.prototype.$axios = axios;
 // 使用axios，到原型上！
 import api from '@/api/api';
 Vue.prototype.$api = api;
