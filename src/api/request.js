@@ -1,5 +1,6 @@
 // 先导入axios
 import axios from 'axios';
+import { Message } from 'element-ui';
 // 创建一个axios 的实例对象
 const request = axios.create({
   timeout: 10000, //配置超时时间
@@ -52,6 +53,10 @@ request.interceptors.response.use(
   //响应错误做点事情
   (error) => {
     console.log('---error.response.status=' + error.response.status);
+    Message({
+      message: '错误信息：' + error.response.status,
+      type: 'error',
+    })
     // 如果服务器给返回结果了！：已经请求到服务器的错误返回
     if (error.response) {
       // 根据不同的状态码提示不同的处理
