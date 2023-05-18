@@ -5,6 +5,7 @@ import com.tsu.mslyp.sys.entity.Stu;
 import com.tsu.mslyp.sys.service.IStuService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,8 +26,18 @@ public class StuController {
     @Resource
     private IStuService stuService;
     @RequestMapping("list")
-    public ResultEntity<List<Stu>> findStuList() {
-        List<Stu> list = stuService.list();
-        return ResultEntity.success(list);
+    public ResultEntity<List<Stu>> findStuList(int pageNum, int pageSize) {
+        // pageNum: 第几页  pageSize: 每页几条
+        //List<Stu> list = stuService.list();
+        ResultEntity<List<Stu>> listResultEntity = stuService.selectByPage(pageNum, pageSize);
+        return listResultEntity;
+    }
+    @RequestMapping("add")
+    public ResultEntity addStu(@RequestBody Stu stu) {
+        boolean save = stuService.save(stu);
+        if (!save) {
+            return ResultEntity.fail("操作失败");
+        }
+        return ResultEntity.success();
     }
 }

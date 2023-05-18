@@ -23,7 +23,7 @@ public class MslypApplication {
         String port = env.getProperty("server.port");
         String path = env.getProperty("server.servlet.context-path");
         if (StringUtils.hasText(path)) {
-            path = "";
+            path = "/ms01";
         }
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application  is running! Access URLs:\n\t" +
