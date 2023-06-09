@@ -1,5 +1,5 @@
 <template>
-  <el-dialog class='dialog' title="新增学生信息：" :visible.sync="infoAddVisible" :close-on-click-modal="true"
+  <el-dialog class='dialog' title="编辑学生信息：" :visible.sync="editVisible" :close-on-click-modal="true"
     :before-close="dialogClose" width="25%">
     <!-- 在dialog中定义form布局 -->
     <div>
@@ -37,14 +37,14 @@
             <img v-if="imageUrl" :src="imageUrl" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             <el-tooltip placement="bottom" effect="light">
-              <div slot="content" v-html="'只能上传jpg/png文件,并且不大于50kb'"></div>
+              <div slot="content" v-html="'只能上传jpg/png文件'"></div>
               <div>{{ uploadResult }}</div>
             </el-tooltip>
           </el-upload>
         </el-form-item>
         <br>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit('formStu')" size="mini">新增</el-button>
+          <el-button type="primary" @click="onSubmit('formStu')" size="mini">修改</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -53,13 +53,15 @@
 <script>
 export default {
   props: {
-    infoAddVisible: {
+    editVisible: {
       type: Boolean,
       default: false,
     },
-    dialogName: {
-      type: String,
-      default: "数据源",
+    itemDate: {
+      type: Object,
+      default() {
+        return {};
+      },
     },
   },
   data() {
@@ -105,9 +107,12 @@ export default {
   },
   watch: {
     // 监听到显示属性的变化执行：-相当于显示后的一些执行操作 -代替mounted函数
-    infoAddVisible: function (val) {
-      console.log("dialog内部--显示 -- " + val);
+    editVisible: function (val) {
+      console.log("dialog内部--显示修改页面 -- " + val);
       if (val) {
+        // 显示数据
+        this.stu = this.itemDate;
+        this.imageUrl = "/api/img/" + this.itemDate.stuPic;
         this.$nextTick(() => {
           console.log("dialog内部-----执行一些操作");
           //获取专业列表：
@@ -123,17 +128,16 @@ export default {
   methods: {
     // 关闭的执行回调：
     dialogClose() {
-      this.$emit("infoAddVisible", false);
+      this.$emit("editVisible", false);
     },
     // 点击提交按钮：
     onSubmit(formStu) {
-      this.$message.success("新增学生");
       this.$refs[formStu].validate((valid) => {
         if (valid) {
-          this.$api.api_info.addStu(this.stu).then((resp) => {
+          this.$api.api_info.editStu(this.stu).then((resp) => {
             console.log(JSON.stringify(resp));
             this.$message.success("保存成功");
-            // 清空表单
+            // // 清空表单项：
             this.$refs.formStu.resetFields();
             this.imageUrl = "";
             this.uploadResult = "";
@@ -147,10 +151,10 @@ export default {
     },
     // 处理头像：
     handleAvatarSuccess(res, file) {
-      console.log(JSON.stringify(res));
-      console.log(JSON.stringify(file));
+      console.log("res = " + JSON.stringify(res));
+      console.log("file = " + JSON.stringify(file));
       if (res.code == "200") {
-        this.uploadResult = "上传成功";
+        this.uploadResult = "100%";
         this.imageUrl = URL.createObjectURL(file.raw);
         this.stu.stuPic = res.data;
       }

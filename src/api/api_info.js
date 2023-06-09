@@ -12,5 +12,33 @@ const api_info = {
       }
     });
   },
+  addStu(stu) {
+    return request({
+      method: 'post',
+      url: '/sys/stu/add',
+      data: stu,
+    })
+  },
+  editStu(stu) {
+    console.log('------修改的数据 '+JSON.stringify(stu));
+    return request({
+      method: 'post',
+      url: '/sys/stu/edit',
+      data: stu,
+    })
+  },
+  deleteStu(stu) {
+    return request({
+      method: 'post',
+      url: '/sys/stu/delete',
+      data: stu,
+    })
+  },
+  getCountByMajor() {
+    return request({
+      method: 'get',
+      url: '/sys/stu/echarsInfo'
+    })
+  }
 };
 export default api_info;

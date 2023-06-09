@@ -19,10 +19,19 @@
             <el-table-column prop="stuPhone" label="手机号"> </el-table-column>
             <el-table-column prop="stuMajor" label="专业"> </el-table-column>
 
+            <!-- ************************************************** -->
+            <el-table-column label="头像" prop="stuPic" align="center">
+              <template slot-scope="scope">
+                <el-image style="width: 80px; height: 80px; margin-bottom:-4px" :src="picLoc + `${scope.row.stuPic}`">
+                </el-image>
+              </template>
+            </el-table-column>
+            <!-- ************************************************** -->
+
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
+                <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -37,16 +46,21 @@
     </el-row>
     <!--弹窗组件： 新增组件-->
     <ExcelInput ref="excelInput" :dialog-detail-visible.sync="dialogDetailVisible" :dialog-name="dialogName" />
+    <!-- 新增页面 -->
     <InfoAdd ref="infoAdd" :infoAddVisible.sync="addVisible" />
+    <!-- 编辑页面 -->
+    <InfoEdit ref="infoEdit" :editVisible.sync="editVisible" :itemDate=stuDate />
   </div>
 </template>
 <script>
 import ExcelInput from "./ExcelInput";
 import InfoAdd from "./InfoAdd.vue";
+import InfoEdit from "./InfoEdit.vue";
 export default {
-  components: { ExcelInput, InfoAdd },
+  components: { ExcelInput, InfoAdd, InfoEdit },
   data() {
     return {
+      picLoc: "/api/img/",
       currentPage: 1, //当前页码
       pageSize: 10, //每页显示条数
       totalCount: 0, //总条数
@@ -57,10 +71,13 @@ export default {
       dialogName: "选择导入的学生excel表：",
       // 新增相关
       addVisible: false,  //是否可见
+      //修改显示属性：
+      editVisible: false,
+      stuDate: {}, //这是要传递的学生对象信息
     };
   },
   mounted() {
-    //请求学生列表数据
+    // 获取外网地址：
     this.callStuList();
   },
   methods: {
@@ -84,7 +101,6 @@ export default {
     },
     // 关闭弹窗
     closeDialog() {
-      console.log("在info组件中执行关闭操作");
       this.dialogDetailVisible = false;
     },
     // 打开弹窗执行
@@ -99,12 +115,42 @@ export default {
     },
     closeInfoAdd() {
       this.addVisible = false;
+      this.callStuList();
     },
-    handleEdit(index, row) {
-      console.log(index, row);
+    //编辑的函数：
+    handleEdit(row) {
+      console.log(JSON.stringify(row));
+      this.stuDate = row;
+      this.editVisible = true;
+      //添加一个事件回调：
+      this.$refs.infoEdit.$once("editVisible", this.closeInfoEdit);
     },
-    handleDelete(index, row) {
-      console.log(index, row);
+    closeInfoEdit() {
+      this.editVisible = false;
+      this.callStuList();
+    },
+    handleDelete(row) {
+      console.log("删除的信息是：" + JSON.stringify(row));
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
+          this.$api.api_info.deleteStu(row).then((resp) => {
+            console.log(JSON.stringify(resp));
+            this.$message.success("删除成功");
+
+            this.callStuList();
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+
     },
   },
 };

@@ -1,48 +1,25 @@
 <!-- 菜单 -->
 <template>
-  <el-menu
-    :router="true"
-    :default-active="$route.path"
-    class="menu_left"
-    @open="handleOpen"
-    @close="handleClose"
-    :collapse="isCollapse"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
-  >
+  <el-menu :router="true" :default-active="$route.path" class="menu_left" @open="handleOpen" @close="handleClose"
+    :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
     <div class="menu_title">
-      <span v-show="!isCollapse">通用管理系统</span>
+      <span v-show="!isCollapse">通用管理系统（李一鹏）</span>
       <span v-show="isCollapse">系统</span>
     </div>
     <!--只有 一级菜单栏 index也是唯一标识 -->
-    <el-menu-item
-      v-for="item in noChildren"
-      :index="item.path"
-      :key="item.name"
-      @click="clickItem(item.label)"
-      :route="item.path"
-    >
+    <el-menu-item v-for="item in noChildren" :index="item.path" :key="item.name" @click="clickItem(item.label)"
+      :route="item.path">
       <i :class="item.icon"></i>
       <span slot="title">{{ item.label }}</span>
     </el-menu-item>
     <!-- 有二级菜单 -->
-    <el-submenu
-      :index='items.label'
-      v-for="items in hasChildren"
-      :key='items.label'
-    >
+    <el-submenu :index='items.label' v-for="items in hasChildren" :key='items.label'>
       <template slot="title">
         <i class="el-icon-bank-card"></i>
         <span slot="title">{{ items.label }}</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item
-          v-for="item in items.children"
-          :key="item.name"
-          :index="item.path"
-          @click="clickItem(item.label)"
-        >
+        <el-menu-item v-for="item in items.children" :key="item.name" :index="item.path" @click="clickItem(item.label)">
           <i :class="item.icon"></i>
           <span slot="title">{{ item.label }} </span>
         </el-menu-item>
