@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tsu.mslyp.sys.mapper.StuMapper">
-
+    <select id="getEcharsInfo" resultType="com.tsu.mslyp.sys.entity.EcharsInfo">
+        SELECT m.`major_name` as major_name, COUNT(s.`stu_id`) AS count
+        FROM tb_stu s
+                 JOIN tb_major m
+                      ON s.stu_major = m.`major_num`
+        GROUP BY stu_major
+    </select>
 </mapper>

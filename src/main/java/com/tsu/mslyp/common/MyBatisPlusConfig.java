@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 //扫描mapper接口所在的包
-@MapperScan("com.tsu.**.mapper")
+@MapperScan("com.**.mapper")
 public class MyBatisPlusConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor(){

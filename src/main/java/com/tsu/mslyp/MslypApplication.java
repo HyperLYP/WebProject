@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @Slf4j
-@MapperScan("com.tsu.mslyp.sys.mapper")
+@MapperScan("com.tsu.**.mapper")
 public class MslypApplication {
 
     public static void main(String[] args) throws UnknownHostException {

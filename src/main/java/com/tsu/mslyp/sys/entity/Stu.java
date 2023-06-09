@@ -2,7 +2,10 @@ package com.tsu.mslyp.sys.entity;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 
 /**
@@ -18,6 +21,7 @@ public class Stu implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @ExcelIgnore
+    @TableId(value = "stu_id", type = IdType.AUTO)
     private Integer stuId;
     @ExcelProperty("学号")
     private String stuNum;
