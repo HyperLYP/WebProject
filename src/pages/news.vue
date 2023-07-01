@@ -12,7 +12,7 @@
                                 <a :href="item.url" class="ellipsis1">{{ item.title }}</a>
                                 <div><span>{{ item.source }}</span></div>
                             </div>
-                            <div><img :src="item.picUrl"></div>
+                            <div><img :src="'https://images.weserv.nl/?url=' + item.picUrl"></div>
                         </div>
                     </van-cell>
                 </van-list>
